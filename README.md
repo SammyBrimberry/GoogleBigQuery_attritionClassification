@@ -8,7 +8,7 @@ Attrition costs U.S. businesses an estimated 1 trillion dollars every year (Gall
 * The total cost of productivity loss; tenured employees are proven to be more productive in both on-premis and remote work settings (Becker Friedman Institute, 2021)
 * The total cost of lower engagement; firms with high attrition have less engaged employees
 
-There is a large economic incentive for firm's to manage thier voluntary attrition; as well as busieness and cultural incentives. Because attrition affects firm's horizontally and vertically, there could potentially be dozens of bespoke initatives that address attrition by department, rank, culture, and so on. 
+There is a large economic incentive for firm's to manage thier voluntary attrition; as well as busieness and cultural incentives. Because attrition affects firms horizontally and vertically, there could potentially be dozens of bespoke initatives that address attrition by department, rank, culture, and so on. 
 
 # Objective
 In order to facilitate that type of innovation, the firm needs to have:
