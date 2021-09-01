@@ -26,14 +26,37 @@ project_id = 'civil-hope-323521'
 # step four: create a client object using the bigquery method
 client = bigquery.Client(project=project_id)
 ```
-# Extracting data from wharehouse using SQL
+# Extracting data from the wharehouse using SQL
 Using our client object we will use the query method to transform the data; since the query method accepts SQL, there is a high level of customizability.
 
 **Note:** in the transformation stage of data processing, it is **best practice to include custom validation functions**. The purpose of these are to ensure that the data being pulled from our cloud warehouse has not been comprised. It is irrelevant to this project, as the data is essentially isolated (i.e. no integration component).
 
+## Deconstructing the SQL querys
+
+### Store the entire dataset into a dataframe
+1. We will SELECT every column (*) in the IBM_arrtition_2021 table
+2. FROM the project_id.database.table 
+
+We then covert the extracted data into a dataframe using the to_dataframe method.
+
+**Note:** when working with big data, be very particular about using the SELECT * statement. In most cases, when working with big data, selecting every column will download too many GB or TB and can a) bog down runtimes substantially; b) increase cloud resourcing expenses. 
+
 ``` python
 df = client.query('''
 select * 
-from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021` # project_id.database.table
+from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021` 
 ''').to_dataframe()
 ```
+### Count the number of employees where attrition equals True and where False
+1. SELECT a count aggregation of the attrition column
+2. FROM the project_id.database.table 
+3. GROUP BY attirion column
+``` python
+# this will show us if this dataset is an imbalanced classification problem
+df = client.query('''
+select count(attrition), attrition
+from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
+group by attrition
+''').to_dataframe()
+```
+
