@@ -77,7 +77,11 @@ from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
 group by attrition
 ''').to_dataframe()
 ```
-Here we observe in our sample set, employees where attrition status is true have worked at more companies, on average. 
+Here we observe in our sample set, employees where attrition status is true have worked at slightly more companies. 
+|Avg. Companies Worked|Attrition Status|
+|---------------------|----------------|
+|2.65|False|
+|2.94|True|
 
 ### See how satisfaction and involvement change by attrition status
 ```python
@@ -88,5 +92,26 @@ from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
 group by attrition
 ''').to_dataframe()
 ```
+We observe that when attrition status is true, employees are less satisfied and engaged in their work. When attrition status is False, average satisfaction and engagement are equal. To further investigate this finding, you could preform a corrleation function to determine the numerical relationship between the two columns.
+|Satisfaction|Involvement|Attrition Status|
+|-------------|--------|----------------|
+|2.77|2.77|False|
+|2.47|2.52|True|
+
+### See how rate(s) vary by department, and attrition status
 ```python
+# avg hourly rate, monthly rate and monlthy income for employees by attrition status and department
+df = client.query('''
+select avg(hourlyrate) as hrate, avg(dailyrate) as drate, department, attrition
+from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
+group by department, attrition
+''').to_dataframe()
 ```
+|Hourly Rate|Department|Attrition Status|
+|----------|----------|----------------|
+|65.89|Sales|False|
+|66.06|R&D|False|
+|64.63|HR|False|
+|66.83|R&D|True|
+|64.10|Sales|True|
+|62.92|HR|True|
