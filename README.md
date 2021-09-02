@@ -1,14 +1,14 @@
 # Cloud Based Warehousing and Reporting Solution that Leverages Predictive Modeling to Target Employees Who are Likley to Leave the Firm
-This repository provides a simple tutorial on building a cloud warehousing, interactive reporting, and predictive modeling solution for businesses concerned with managing employee attrition. 
+This repository provides a simple tutorial on building a cloud warehousing, interactive reporting, and a predictive modeling solution for businesses concerned with managing employee attrition. 
 
 # Problem
-Attrition costs U.S. businesses an estimated 1 trillion dollars every year (Gallup, 2019). Items that are associated in the total cost of attrition include:
+Attrition costs U.S. businesses an estimated 1 trillion dollars every year (Gallup, 2019). Items associated with the total cost of attrition include:
 * The total cost of hiring which includes activities such as advertising, interviewing, screening, etc.
 * The total cost associated with onboarding, HR administration for related activities, and new-employee training
 * The total cost of productivity loss; tenured employees are proven to be more productive in both on-premis and remote work settings (Becker Friedman Institute, 2021)
 * The total cost of lower engagement; firms with high attrition have less engaged employees
 
-There is a large economic incentive for firm's to manage thier voluntary attrition; as well as busieness and cultural incentives. Because attrition affects firms horizontally and vertically, there could potentially be dozens of bespoke initatives that address attrition by department, rank, culture, and so on. 
+There is a large economic incentive for firms to manage thier voluntary attrition, as well as busieness and cultural incentives. Because attrition affects firms horizontally and vertically, there could potentially be dozens of bespoke initatives that address attrition by department, rank, culture, and so on. 
 
 # Objective
 In order to facilitate that type of innovation, the firm needs to have:
