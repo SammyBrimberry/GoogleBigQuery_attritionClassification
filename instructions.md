@@ -31,7 +31,7 @@ Using our client object we will use the query method to transform the data; sinc
 
 **Note:** in the transformation stage of data processing, it is **best practice to include custom validation functions**. The purpose of these are to ensure that the data being pulled from our cloud warehouse has not been comprised. It is irrelevant to this project, as the data is essentially isolated (i.e. no integration component).
 
-## Deconstructing the SQL querys
+## Deconstructing the SQL queries
 
 ### Store the entire dataset into a dataframe
 1. We will SELECT every column (*) in the IBM_arrtition_2021 table
@@ -50,7 +50,7 @@ from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
 ### Count the number of employees where attrition equals True and where False
 1. SELECT a count aggregation of the attrition column
 2. FROM the project_id.database.table 
-3. GROUP BY attirion column
+3. GROUP BY attirion values
 ``` python
 # this will show us if this dataset is an imbalanced classification problem
 df = client.query('''
@@ -59,4 +59,34 @@ from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
 group by attrition
 ''').to_dataframe()
 ```
+Because there are much more instances where attrition is False than where True, the data is considered imbalanced. 
+|Count|Attrition Status|
+|-----|----------------|
+|1233|False|
+|237|True|
 
+### Find the average past companies worked by attrition status 
+1. SELECT an average aggregation of the NumCompaniesWorked column
+2. FROM the project_id.database.table 
+3. GROUP BY attirion values 
+```python
+# avg number of companies worked by attirition status
+df = client.query('''
+select avg(NumCompaniesWorked)
+from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
+group by attrition
+''').to_dataframe()
+```
+Here we observe in our sample set, employees where attrition status is true have worked at more companies, on average. 
+
+### See how satisfaction and involvement change by attrition status
+```python
+# job satisfaction rating by attrition status
+df = client.query('''
+select avg(JobSatisfaction) as satisfaction, avg(JobInvolvement) as Involvement, attrition
+from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
+group by attrition
+''').to_dataframe()
+```
+```python
+```
