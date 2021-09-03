@@ -8,15 +8,16 @@ Attrition costs U.S. businesses an estimated 1 trillion dollars every year (Gall
 * The total cost of productivity loss; tenured employees are proven to be more productive in both on-premis and remote work settings (Becker Friedman Institute, 2021)
 * The total cost of lower engagement; firms with high attrition have less engaged employees
 
-There is a large economic incentive for firms to manage their voluntary attrition, as well as busieness and cultural incentives. Because attrition affects firms horizontally and vertically, there could potentially be dozens of bespoke initatives that address attrition by department, rank, culture, and so on. 
+There is a large economic incentive for firms to manage their voluntary attrition, as well as business and cultural incentives. Because attrition affects firms horizontally and vertically, there could potentially be dozens of bespoke initiatives that address attrition by department, rank, culture, and so on.  
 
 # Objective
 In order to facilitate that type of innovation, the firm needs to have:
 1. A flexible, repeatable, and intelligent data architecture that will support agility, employee engagement customization, and innovation
-2. Robust reporting where acess is integrated across the entire firm
-3. Supervised learning capabilities to augment business intelligence and acuratley predict which employees will leave the firm
+2. Robust reporting where access is integrated across the entire firm
+3. Supervised learning capabilities to augment business intelligence and accurately predict which employees will leave the firm
 
-# Solution
+# Solution Architecture
+
 ![product_architecture](images/product_architecture.png)
 
 * Data warehousing via Google BigQuery
@@ -27,7 +28,7 @@ In order to facilitate that type of innovation, the firm needs to have:
 
 
 ## Dataset Acquisition
-This dataset is a fictional dataset that has been created by IBM data scientists. It was last updated in 2017.
+This dataset is fictional, and was created been created by IBM data scientists. It was last updated in 2017.
 
 ## Data Dictionary
 |Column Name	|Data Type	|Description |

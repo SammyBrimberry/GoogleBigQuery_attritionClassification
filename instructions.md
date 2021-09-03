@@ -1,7 +1,7 @@
 # Connecting to Google BigQuery (GBQ)
 
 ### Authenticate access
-This code bit will leverage google's auth method and require users to login to an email address that is registered with privilideges in the cloud project.
+This code bit will leverage google's auth method and require users to login to an email address that is registered with privileges in the cloud project.
 
 ``` python
 # step 1: imports
@@ -16,7 +16,7 @@ Here we will store the project Id of our Google Cloud instance where our databas
 
 Now that our Id is stored inside a variable as a string, we need to create an object that has access to the bigquery package and leverage on of it's methods called Client. We need to pass our project Id variable into this method in order to access the assets stored in that particular instance.
 
-It is the client object that allows us to programatically connect to our cloud warehouse via Google's API.
+It is the client object that allows us to programmatically connect to our cloud warehouse via Google's API.
 
 Please note that connecting to Google Cloud on your local machine is a different task. The largest difference is the need to set an environment variable and pass it your API key; as well as, there is no need to use authentication for local development (VS cloud)
 ```python
@@ -39,7 +39,7 @@ Using our client object we will use the query method to transform the data; sinc
 
 We then covert the extracted data into a dataframe using the to_dataframe method.
 
-**Note:** when working with big data, be very particular about using the SELECT * statement. In most cases, when working with big data, selecting every column will download too many GB or TB and can a) bog down runtimes substantially; b) increase cloud resourcing expenses. 
+**Note:** when working with big data, be very particular about using the SELECT * statement. In most cases, when working with big data, selecting every column will download too many GB or TB and can a) bog down runtime substantially; b) increase cloud resourcing expenses. 
 
 ``` python
 df = client.query('''
@@ -111,7 +111,7 @@ from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
 group by attrition
 ''').to_dataframe()
 ```
-We observe that when attrition status is true, employees are less satisfied and engaged in their work. When attrition status is False, average satisfaction and engagement are equal. To further investigate this finding, you could preform a corrleation function to determine the numerical relationship between the two columns.
+We observe that when attrition status is true, employees are less satisfied and engaged in their work. When attrition status is False, average satisfaction and engagement are equal. To further investigate this finding, you could preform a correlation function to determine the numerical relationship between the two columns.
 |Satisfaction|Involvement|Attrition Status|
 |-------------|--------|----------------|
 |2.77|2.77|False|
@@ -122,7 +122,7 @@ We observe that when attrition status is true, employees are less satisfied and 
 2. FROM the project_id.database.table
 3. GROUP BY department and attrition status
 ```python
-# avg hourly rate, monthly rate and monlthy income for employees by attrition status and department
+# avg hourly rate, monthly rate and monthly income for employees by attrition status and department
 df = client.query('''
 select avg(hourlyrate) as hrate, department, attrition
 from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
