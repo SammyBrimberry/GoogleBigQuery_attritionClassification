@@ -84,6 +84,9 @@ Here we observe in our sample set, employees where attrition status is true have
 |2.94|True|
 
 ### See how satisfaction and involvement change by attrition status
+1. SELECT the average of the JobSatisfaction and JobInvolvement column and alias their names
+2. FROM the project_id.database.table
+3. GROUP BY attirion values 
 ```python
 # job satisfaction rating by attrition status
 df = client.query('''
@@ -99,14 +102,18 @@ We observe that when attrition status is true, employees are less satisfied and 
 |2.47|2.52|True|
 
 ### See how rate(s) vary by department, and attrition status
+1. SELECT the average of the hourlyrate 
+2. FROM the project_id.database.table
+3. GROUP BY department and attrition status
 ```python
 # avg hourly rate, monthly rate and monlthy income for employees by attrition status and department
 df = client.query('''
-select avg(hourlyrate) as hrate, avg(dailyrate) as drate, department, attrition
+select avg(hourlyrate) as hrate, department, attrition
 from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
 group by department, attrition
 ''').to_dataframe()
 ```
+
 |Hourly Rate|Department|Attrition Status|
 |----------|----------|----------------|
 |65.89|Sales|False|
@@ -115,3 +122,16 @@ group by department, attrition
 |66.83|R&D|True|
 |64.10|Sales|True|
 |62.92|HR|True|
+
+### Count the distribution of female attrition across the departments
+```python
+# count department where attrition is true for female employees
+df = client.query('''
+select department
+from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
+where attrition=True and gender = "Female"
+''').to_dataframe()
+```
+1. SELECT the department column
+2. FROM the project_id.database.table
+3. WHERE
