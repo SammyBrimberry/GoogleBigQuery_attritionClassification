@@ -17,12 +17,14 @@ In order to facilitate that type of innovation, the firm needs to have:
 3. Supervised learning capabilities to augment business intelligence and acuratley predict which employees will leave the firm
 
 # Solution
+![product_architecture](images/product_architecture.png)
+
 * Data warehousing via Google BigQuery
 * ETL using SQL, Python (Pandas)
 * Interactive reporting and analytics via Python (Plotly, Matplotlib)
 * Classification algorithm via Python (Scikit-learn)
-* Orchistration via AirFlow for Python
 * Deploy Model using Google Cloud Platform
+
 
 ## Dataset Acquisition
 This dataset is a fictional dataset that has been created by IBM data scientists. It was last updated in 2017.

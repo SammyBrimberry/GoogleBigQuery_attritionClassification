@@ -50,7 +50,7 @@ from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
 ### Count the number of employees where attrition equals True and where False
 1. SELECT a count aggregation of the attrition column
 2. FROM the project_id.database.table 
-3. GROUP BY attirion values
+3. GROUP BY attrition values
 ``` python
 # this will show us if this dataset is an imbalanced classification problem
 df = client.query('''
@@ -65,10 +65,26 @@ Because there are much more instances where attrition is False than where True, 
 |1233|False|
 |237|True|
 
+### Compair the average salary hike by attrition status
+1. SELECT the average of the PercentSalaryHike column
+2. FROM the project_id.database.table 
+3. GROUP BY attrition
+``` python
+df = client.query('''
+select avg(PercentSalaryHike)
+from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
+group by attrition
+''').to_dataframe()
+```
+|Salary Hike %|Attrition Status|
+|-------------|----------------|
+|15.23|False|
+|15.09|True|
+
 ### Find the average past companies worked by attrition status 
 1. SELECT an average aggregation of the NumCompaniesWorked column
 2. FROM the project_id.database.table 
-3. GROUP BY attirion values 
+3. GROUP BY attrition values 
 ```python
 # avg number of companies worked by attirition status
 df = client.query('''
@@ -86,7 +102,7 @@ Here we observe in our sample set, employees where attrition status is true have
 ### See how satisfaction and involvement change by attrition status
 1. SELECT the average of the JobSatisfaction and JobInvolvement column and alias their names
 2. FROM the project_id.database.table
-3. GROUP BY attirion values 
+3. GROUP BY attrition values 
 ```python
 # job satisfaction rating by attrition status
 df = client.query('''
@@ -129,9 +145,10 @@ group by department, attrition
 df = client.query('''
 select department
 from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
-where attrition=True and gender = "Female"
+where attrition = True and gender = "Female"
 ''').to_dataframe()
 ```
 1. SELECT the department column
 2. FROM the project_id.database.table
-3. WHERE
+3. WHERE gender is female and attrition is True
+|
