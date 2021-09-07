@@ -28,7 +28,7 @@ In order to facilitate that type of innovation, the firm needs to have:
 
 
 ## Dataset Acquisition
-This dataset is fictional, and was created been created by IBM data scientists. It was last updated in 2017.
+This dataset is fictional, and was created by IBM data scientists. It was last updated in 2017.
 
 ## Data Dictionary
 |Column Name	|Data Type	|Description |

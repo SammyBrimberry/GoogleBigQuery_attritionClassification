@@ -1,0 +1,55 @@
+Column,Importance
+OverTime_Yes,1.044627876
+JobRole_Sales Executive,0.825256613
+BusinessTravel_Travel_Frequently,0.775067576
+BusinessTravel_Travel_Rarely,0.541116793
+JobRole_Sales Representative,0.51668007
+JobRole_Laboratory Technician,0.506211563
+DistanceFromHome,0.492554952
+MaritalStatus_Single,0.426394723
+NumCompaniesWorked,0.390325493
+YearsSinceLastPromotion,0.275353238
+JobRole_Manufacturing Director,0.249958195
+Gender_Male,0.221245503
+MaritalStatus_Married,0.14555256
+JobRole_Human Resources,0.135555413
+Education_5,0.105814368
+Education_2,0.095102286
+HourlyRate,0.063477832
+Education_4,0.055360028
+EducationField_Technical Degree,0.053239019
+Education_3,0.038055846
+MonthlyRate,0.01932206
+Department_Sales,0.006395477
+PerformanceRating_4,-0.073794748
+PercentSalaryHike,-0.091814183
+JobLevel_5,-0.165994885
+StockOptionLevel_3,-0.186768693
+DailyRate,-0.209026653
+EducationField_Marketing,-0.218820693
+JobRole_Manager,-0.253386567
+JobSatisfaction_2,-0.303811603
+TrainingTimesLastYear,-0.306668943
+EducationField_Other,-0.331266657
+RelationshipSatisfaction_2,-0.344908558
+JobSatisfaction_3,-0.382053833
+StockOptionLevel_2,-0.390397272
+EducationField_Medical,-0.391242501
+WorkLifeBalance_4,-0.406216017
+JobLevel_3,-0.410248227
+RelationshipSatisfaction_4,-0.456390389
+EducationField_Life Sciences,-0.470207213
+JobInvolvement_2,-0.483801353
+WorkLifeBalance_2,-0.513607553
+RelationshipSatisfaction_3,-0.521372423
+EnvironmentSatisfaction_3,-0.529580733
+JobRole_Research Director,-0.533831145
+EnvironmentSatisfaction_2,-0.602854496
+JobSatisfaction_4,-0.611228769
+JobInvolvement_3,-0.619463522
+StockOptionLevel_1,-0.621346032
+EnvironmentSatisfaction_4,-0.689238638
+JobLevel_4,-0.706770476
+JobInvolvement_4,-0.737811343
+WorkLifeBalance_3,-0.861746304
+JobLevel_2,-1.118202204
