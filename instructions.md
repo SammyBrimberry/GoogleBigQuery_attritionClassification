@@ -65,7 +65,7 @@ Because there are much more instances where attrition is False than where True, 
 |1233|False|
 |237|True|
 
-### Compair the average salary hike by attrition status
+### Compare the average salary hike by attrition status
 1. SELECT the average of the PercentSalaryHike column
 2. FROM the project_id.database.table 
 3. GROUP BY attrition
@@ -86,7 +86,7 @@ group by attrition
 2. FROM the project_id.database.table 
 3. GROUP BY attrition values 
 ```python
-# avg number of companies worked by attirition status
+# avg number of companies worked by attrition status
 df = client.query('''
 select avg(NumCompaniesWorked)
 from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021`
@@ -151,4 +151,3 @@ where attrition = True and gender = "Female"
 1. SELECT the department column
 2. FROM the project_id.database.table
 3. WHERE gender is female and attrition is True
-|
