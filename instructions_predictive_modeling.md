@@ -43,23 +43,16 @@ from sklearn.decomposition import PCA
 Already explained -- but need to re connect to data again in this section
 
 ``` python
-# step 1: imports
 from google.colab import auth
 from google.cloud import bigquery
-# import biqguery, this is where our csv is living
 from google.cloud import bigquery
 
-# step 2: authentication using the auth method
 auth.authenticate_user()
-
 project_id = 'civil-hope-323521'
 client = bigquery.Client(project=project_id)
-
-# query our entire data living in google cloud
 df = client.query('''
 select * 
 from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021` # project_id.database.table
 ''').to_dataframe()
-
-df.head() # print out first 5 rows
+df.head() 
 ```
