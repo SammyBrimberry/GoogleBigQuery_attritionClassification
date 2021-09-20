@@ -75,4 +75,6 @@ conda activate plotly
     ``` python
     conda install plotly
     ```
-# Interactive Reporting
+# Interactive Reporting Tutorial
+In this tutorial we will review how to create interactive charts using a pythonic package from our PyViz platform, Plotly 
+    **Note:** Plotly also has packages for R and JavaScript, making it a versatile and flexible open source solution that can be deployed across many business units.
