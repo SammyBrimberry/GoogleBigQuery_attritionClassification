@@ -1,4 +1,4 @@
-# Installing Product Dependencies Using PyViz
+# Installing Product Dependencies Using PyViz (Recommended)
  PyViz is a Python visualization package that provides a single platform to access multiple visualization packages, including Matplotlib, Plotly Express, hvPlot, Panel, D3.js, etc.. We will be primarily leveraging the Plotly package for this product; but the PyViz environment will give you more flexibility when developing data products for your client.
 
 Follow the steps below to install and set up PyViz in your Python environment.
@@ -60,3 +60,19 @@ Follow the next steps to install PyViz and all its dependencies in your Python v
     set NODE_OPTIONS=
     ```
 # Simple Install
+If installing the PyViz platform onto your machine isn't strategic, we can simply install Plotly.
+
+Follow the steps below to install and set up Plotly in your Python environment.
+
+**Note:** Make sure that you are using your conda environment that has anaconda installed. Create a new environment by using:
+
+```python
+conda update anaconda
+conda create -n plotly python=3.7 anaconda -y
+conda activate plotly
+```
+1. Using the conda/pip package manager please install Plotly
+    ``` python
+    conda install plotly
+    ```
+# Interactive Reporting
