@@ -60,7 +60,7 @@ Follow the next steps to install PyViz and all its dependencies in your Python v
     set NODE_OPTIONS=
     ```
 # Simple Install
-If installing the PyViz platform onto your machine isn't strategic, we can simply install Plotly.
+If installing the PyViz platform onto your machine isn't strategic, we can still run the reporting product using just the Plotly package.
 
 Follow the steps below to install and set up Plotly in your Python environment.
 
@@ -73,8 +73,20 @@ conda activate plotly
 ```
 1. Using the conda/pip package manager please install Plotly
     ``` python
-    conda install plotly
+    conda install -c plotly plotly=5.3.1
+    ```
+2. Check if the installation was successful 
+    ```python
+    conda list plotly
     ```
 # Interactive Reporting Tutorial
-In this tutorial we will review how to create interactive charts using a pythonic package from our PyViz platform, Plotly 
-    **Note:** Plotly also has packages for R and JavaScript, making it a versatile and flexible open source solution that can be deployed across many business units.
+In this tutorial we will review how to create interactive charts using a pythonic package from our PyViz platform, Plotly. 
+
+**Note:** Plotly also has methods for R and JavaScript, making it a versatile and flexible open source solution that can be deployed across many business units.
+
+Plotly is one of the best open source reporting tools on the market. Plotly charts are interactive, allowing users to hover over values, zoom in and out of graphs, and identify outliers. Built on top of plotly.js, plotly.py is a high-level, declarative charting library. plotly.js ships with over 30 chart types, including scientific charts, 3D graphs, statistical charts, SVG maps, financial charts, and more.
+
+## Loading in Data
+
+## Exploratory Analysis of Attrition
+
