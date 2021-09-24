@@ -148,6 +148,4 @@ After doing Principal Component Analysis (PCA) on our data set, we found that th
 4. Distance From Home
 5. Marital Status
 6. Number of Companies worked
-These features will be what our report centers around.
-
-Our Attrition report will have a total of 7 figures.
+Our Attrition report will have a total of 7 figures and center around the features listed above.
