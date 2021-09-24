@@ -26,7 +26,7 @@ project_id = 'civil-hope-323521'
 # step four: create a client object using the bigquery method
 client = bigquery.Client(project=project_id)
 ```
-# Extracting data from the wharehouse using SQL
+# Extracting data from the warehouse using SQL
 Using our client object we will use the query method to transform the data; since the query method accepts SQL, there is a high level of customizability.
 
 **Note:** in the transformation stage of data processing, it is **best practice to include custom validation functions**. The purpose of these are to ensure that the data being pulled from our cloud warehouse has not been comprised. It is irrelevant to this project, as the data is essentially isolated (i.e. no integration component).

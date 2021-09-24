@@ -86,7 +86,68 @@ In this tutorial we will review how to create interactive charts using a pythoni
 
 Plotly is one of the best open source reporting tools on the market. Plotly charts are interactive, allowing users to hover over values, zoom in and out of graphs, and identify outliers. Built on top of plotly.js, plotly.py is a high-level, declarative charting library. plotly.js ships with over 30 chart types, including scientific charts, 3D graphs, statistical charts, SVG maps, financial charts, and more.
 
-## Loading in Data
+## Setting our Environment Variable
+An environment variable is a variable whose value is set outside the program, typically through functionality built into the operating system or microservice. An environment variable is made up of a name/value pair, and any number may be created and available for reference at a point in time.
 
+Environment variables are helpful because they allow you to change what environment(s) use what third party service by changing an API key, endpoint, etc.
+
+In order to set our match our env variable to our Goolge BigQuery credentials .json file (**AKA our API Key**) we need to leverage another python module called OS. This comes preinstalled with python. The OS module provides a portable way of using operating system dependent functionality.
+
+From that module, we will be using the .environ method. Read the documentation [here](https://docs.python.org/3/library/os.html#module-os).
+
+**Note:** you can pass an r in front of string variables to turn them into a raw string. This treats characters such as backslash (‘\’) as a literal character. This also means that this character will not be treated as a escape character.
+
+```python
+import os
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=r"C:\Users\path\to\auth.json"
+```
+## ETL using SQL and Python Jobs
+### Create a client object that accesses Google Cloud's API
+Here we will store the project Id of our Google Cloud instance where our database is located. These Project Id's are required by Google Cloud to be unique; if you try to recreate this project in your development environment, your Id will be different.
+
+Now that our Id is stored inside a variable as a string, we need to create an object that has access to the bigquery package and leverage on of it's methods called Client. We need to pass our project Id variable into this method in order to access the assets stored in that particular instance.
+
+It is the client object that allows us to programmatically connect to our cloud warehouse via Google's API.
+
+Please note that connecting to Google Cloud on your local machine is a different task. The largest difference is the need to set an environment variable and pass it your API key; as well as, there is no need to use authentication for local development (VS cloud)
+```python
+# store Google Cloud project id into a variable
+project_id = 'civil-hope-323521'
+
+# create a client object using the bigquery method
+client = bigquery.Client(project=project_id)
+```
+### Extracting data from the warehouse using SQL
+Using our client object we will use the query method to transform the data; since the query method accepts SQL, there is a high level of customizability.
+
+**Note:** in the transformation stage of data processing, it is **best practice to include custom validation functions**. The purpose of these are to ensure that the data being pulled from our cloud warehouse has not been comprised. It is irrelevant to this project, as the data is essentially isolated (i.e. no integration component).
+
+### Store the entire dataset into a dataframe
+1. We will SELECT every column (*) in the IBM_arrtition_2021 table
+2. FROM the project_id.database.table 
+
+We then covert the extracted data into a dataframe using the to_dataframe method.
+
+**Note:** when working with big data, be very particular about using the SELECT * statement. In most cases, when working with big data, selecting every column will download too many GB or TB and can a) bog down runtime substantially; b) increase cloud resourcing expenses. 
+
+```python
+# query our entire data living in google cloud
+df = client.query('''
+select * 
+from `civil-hope-323521.attrition_dataset_1.IBM_attrition_2021` # project_id.database.table
+''').to_dataframe()
+
+# show the first 5 rows
+df.head()
+```
 ## Exploratory Analysis of Attrition
+After doing Principal Component Analysis (PCA) on our data set, we found that the top features responsible for predicting when Attrition is **True** are: 
+1. Over Time 
+2. Job Role
+3. Business Travel
+4. Distance From Home
+5. Marital Status
+6. Number of Companies worked
+These features will be what our report centers around.
 
+Our Attrition report will have a total of 7 figures.
