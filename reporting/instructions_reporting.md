@@ -161,10 +161,10 @@ Let's break this code into two main components:
 2. The logic that governs the code.
     * This is where the creativity in development happens. Given a set of syntax rules, business requirements, and other (often varying) constraints, how can we solve this problem? This is an example of one high-level question that should guide you throughout your development journey.
 
-For Figure 1 we are going to call Plotly which we aliased as px during our imports. This is known as a wrapper, and can be thought of as the way we access Plotly's various functions. We will also call the [histogram]() function because we want the y axis to hold the count of our selected features. Here is a list of the function methods we are using to create Figure 1:
+For Figure 1 we are going to call Plotly which we aliased as px during our imports. This is known as a wrapper, and can be thought of as the way we access Plotly's various functions. We will also call the [histogram](https://plotly.com/python/histograms/) function because we want the y axis to hold the count of our selected features. Here is a list of the function methods we are using to create Figure 1:
 * **All of Plotly's graph objects functions (i.e. bar, etc.) require the first object to be the dataframe.** Here we are using a dataframe named column_feature_top10 - this is simply a slice of our full df we initialized above.
 * We then specify what column from the dataframe above we want to set as our x axis.
-* 
+* In plotly
 ```python
 # init the figures 
 fig1 = px.histogram(
@@ -183,23 +183,46 @@ fig2 = px.histogram(
     title='Level of Business Travel where Attrition is True')
 
 fig3 = px.histogram(
-    column_feature_top10, x='JobRole', color='Attrition', barmode='group', title='Headcount by Department Split by Attrition Status')
+    column_feature_top10, 
+    x='JobRole', 
+    color='Attrition', 
+    barmode='group', 
+    title='Headcount by Department Split by Attrition Status')
 
 fig4 = px.histogram(
-    df, x='MaritalStatus',color='Attrition',barmode='group',title='Count of Marital Status by Attrition')
+    df, 
+    x='MaritalStatus',
+    color='Attrition',
+    barmode='group',
+    title='Count of Marital Status by Attrition')
 
 fig5 = px.histogram(
-    df,x="EnvironmentSatisfaction",color="Attrition",barmode='group',title="Environment Satisfaction by Attrition Status")
+    df,
+    x="EnvironmentSatisfaction",
+    color="Attrition",
+    barmode='group',
+    title="Environment Satisfaction by Attrition Status")
 
 fig6 = px.bar(
-    df.query("Gender=='Female'"),x='DailyRate',y='Attrition',color='Department',orientation='h',title="Female Employee's Daily Rate by Attrition Status")
+    df.query("Gender=='Female'"),
+    x='DailyRate',
+    y='Attrition',
+    color='Department',
+    orientation='h',
+    title="Female Employee's Daily Rate by Attrition Status")
 
 fig7 = px.bar(
-    df.query("Gender=='Male'"),x='DailyRate',y='Attrition',color='Department',orientation='h',title="Male Employee's Daily Rate by Attrition Status")
+    df.query("Gender=='Male'"),
+    x='DailyRate',
+    y='Attrition',
+    color='Department',
+    orientation='h',
+    title="Male Employee's Daily Rate by Attrition Status")
 ```
 ```python
 # store the figure objects into a dictionary  
-figure_dict = {'fig1':fig1,'fig2':fig2,'fig3':fig3,'fig4':fig4,'fig5':fig5,'fig6':fig6,'fig7':fig7}
+figure_dict = {
+    'fig1':fig1,'fig2':fig2,'fig3':fig3,'fig4':fig4,'fig5':fig5,'fig6':fig6,'fig7':fig7}
 
 # loop through the figure dictionary and write image to a png file
 for i, x in figure_dict.items():
