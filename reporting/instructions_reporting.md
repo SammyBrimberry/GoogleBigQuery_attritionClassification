@@ -164,7 +164,8 @@ Let's break this code into two main components:
 For Figure 1 we are going to call Plotly which we aliased as px during our imports. This is known as a wrapper, and can be thought of as the way we access Plotly's various functions. We will also call the [histogram](https://plotly.com/python/histograms/) function because we want the y axis to hold the count of our selected features. Here is a list of the function methods we are using to create Figure 1:
 * **All of Plotly's graph objects functions (i.e. bar, etc.) require the first object to be the dataframe.** Here we are using a dataframe named column_feature_top10 - this is simply a slice of our full df we initialized above.
 * We then specify what column from the dataframe above we want to set as our x axis.
-* In plotly
+* In plotly the color parameter is equivalent to a GROUP BY method in SQL / Pandas.
+* We will then specify the title of our figure.
 ```python
 # init the figures 
 fig1 = px.histogram(
@@ -174,6 +175,12 @@ fig1 = px.histogram(
     barmode='group',
     title="Count of Over Time where Attrition is True")
 ```
+Below is the output for Figure 1 (i.e. our code above):
+
+![fig1](report_attrition\fig1.png) 
+
+
+
 ```python
 fig2 = px.histogram(
     column_feature_top10,
