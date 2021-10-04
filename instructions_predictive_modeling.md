@@ -1,5 +1,8 @@
 # Predictive Modeling
 
+## Set up
+
+
 ### Imports 
 It is common practice to place all the imports at the top of a file. Listed below are all the libraries and tools that will be leveraged in this section. 
 
