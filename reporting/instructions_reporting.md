@@ -180,7 +180,6 @@ Below is the output for Figure 1 (i.e. our code above):
 ![fig1](report_attrition\fig1.png) 
 
 
-
 ```python
 fig2 = px.histogram(
     column_feature_top10,
