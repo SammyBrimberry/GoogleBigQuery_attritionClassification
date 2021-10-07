@@ -234,10 +234,76 @@ Now that our figure objects have been created for our report on Attrition, we ne
 figure_dict = {
     'fig1':fig1,'fig2':fig2,'fig3':fig3,'fig4':fig4,'fig5':fig5,'fig6':fig6,'fig7':fig7}
 ```
-Because we have multiple figures in our report, we want to use a for loop to programmatically iterate over the *key* and *value* pairs that are stored in our dictionary (see code cell directly above)
+Because we have multiple figures in our report, we want to use a for loop to programmatically iterate over the *key* and *value* pairs that are stored in our dictionary (see code cell directly above). Our for loop consists of these core components:
+1. Key word "for" and "in" to indicate to the program we are leveraging a for loop.
+2. The unbound variables i (key) & x (value) that we will use to store the key value pairs inside our dictionary in each iteration.
+3. The dictionary we want to iterate over, which is figure_dict. We will also apply the items function to our dictionary to isolate the key-value pairs.
+4. The logic inside our for loop prints and saves each figure object stored inside our dictionary.
 ```python
 # loop through the figure dictionary and write image to a png file
 for i, x in figure_dict.items():
     x.show()
     x.write_image(f'report_attrition/{i}.png')
+```
+## Exploratory Analysis of Company Demographics
+
+```python
+# Transform data frame
+avg_profit = df[['Department','JobRole','MonthlyIncome','MonthlyRate','Attrition','Gender','EducationField','Education','Age','DailyRate']]
+avg_profit['MonthlyProfit'] = avg_profit.apply(lambda x: x['MonthlyRate'] - x['MonthlyIncome'],axis=1)
+avg_profit['ProfitPCT'] = avg_profit.apply(lambda x: (x['MonthlyProfit'] / sum(avg_profit['MonthlyProfit']))*100, axis=1)
+avg_profit['MonthlyRatePCT'] = avg_profit.apply(lambda x: (x['MonthlyRate']/sum(avg_profit['MonthlyRate'])*100),axis=1)
+mean_profit_slice = avg_profit.groupby(avg_profit['Department']).mean().round(2)
+```
+```python
+# init the figures
+fig1 = px.histogram(
+    avg_profit,
+    x=avg_profit['ProfitPCT'],
+    y='Department',
+    color='Gender',
+    title='Distribution of Profit as Percent by Department and Gender')
+
+fig2 = px.histogram(
+    avg_profit,
+    x=avg_profit['ProfitPCT'],
+    color='Department',
+    title='Distribution of Profit as Percent by Department')
+
+fig3 = px.histogram(
+    avg_profit,
+    x=avg_profit['ProfitPCT'],
+    y='Attrition',
+    color='Department',
+    title='Distribution of Profit as Percent by Attrition and Department')
+
+fig4 = px.histogram(
+    avg_profit,
+    x="MonthlyRatePCT",
+    y='Department',
+    color='EducationField',
+    title='Monthly Rate as Percentage by Department and Education Field')
+
+fig5 = px.bar(
+    mean_profit_slice,
+    x=mean_profit_slice.index,
+    y='MonthlyProfit',
+    title="Average Monthly Profit by Department")
+
+fig6 = px.scatter(
+    avg_profit, 
+    x="MonthlyProfit",
+    y='Age',
+    color='Department', 
+    size="DailyRate", 
+    title="Distribution of Monthly Profit by Employee Age")
+```
+```python
+# store the figure objects into a list  
+figure_dict = {'fig1':fig1,'fig2':fig2,'fig3':fig3,'fig4':fig4,'fig5':fig5,'fig6':fig6}
+
+# loop through the figure list and print
+for i, x in figure_dict.items():
+    x.show()
+    x.write_image(f'report_company/{i}.png')
 ```
