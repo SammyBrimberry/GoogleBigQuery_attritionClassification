@@ -123,7 +123,7 @@ Using our client object we will use the query method to transform the data; sinc
 **Note:** in the transformation stage of data processing, it is **best practice to include custom validation functions**. The purpose of these are to ensure that the data being pulled from our cloud warehouse has not been comprised. It is irrelevant to this project, as the data is essentially isolated (i.e. no integration component).
 
 ### Store the entire dataset into a dataframe
-1. We will SELECT every column (*) in the IBM_arrtition_2021 table
+1. We will SELECT every column (*) in the IBM_attrition_2021 table
 2. FROM the project_id.database.table 
 
 We then covert the extracted data into a dataframe using the to_dataframe method.
@@ -164,7 +164,7 @@ Let's break this code into two main components:
 For Figure 1 we are going to call Plotly which we aliased as px during our imports. This is known as a wrapper, and can be thought of as the way we access Plotly's various functions. We will also call the [histogram](https://plotly.com/python/histograms/) function because we want the y axis to hold the count of our selected features. Here is a list of the function methods we are using to create Figure 1:
 * **All of Plotly's graph objects functions (i.e. bar, etc.) require the first object to be the dataframe.** Here we are using a dataframe named column_feature_top10 - this is simply a slice of our full df we initialized above.
 * We then specify what column from the dataframe above we want to set as our x axis.
-* In plotly the color parameter is equivalent to a GROUP BY method in SQL / Pandas.
+* In plotly, the color parameter is equivalent to a GROUP BY method in SQL / Pandas; here we want to pivot Attrition status across the x axis.
 * We will then specify the title of our figure.
 ```python
 # init the figures 
@@ -175,10 +175,11 @@ fig1 = px.histogram(
     barmode='group',
     title="Count of Over Time where Attrition is True")
 ```
-Below is the output for Figure 1 (i.e. our code above):
+Below is the output for Figure 1 (i.e. our code directly above above). Here we observe that employees who have left the firm are more likely to work over time. The opposite is true for employees who have stayed. This could lead decision makers to question the Firm's over time policy.
 
 ![fig1](report_attrition\fig1.png) 
 
+We will construct Figures 2 - 7 in a very similar fashion to figure one. See below.
 
 ```python
 fig2 = px.histogram(
@@ -216,7 +217,8 @@ fig6 = px.bar(
     color='Department',
     orientation='h',
     title="Female Employee's Daily Rate by Attrition Status")
-
+```
+```python
 fig7 = px.bar(
     df.query("Gender=='Male'"),
     x='DailyRate',
@@ -225,11 +227,15 @@ fig7 = px.bar(
     orientation='h',
     title="Male Employee's Daily Rate by Attrition Status")
 ```
+Now that our figure objects have been created for our report on Attrition, we need to export the images. To accomplish this we will store the figure objects (value), and their respective names (key) into a dictionary that is named figure_dict. 
+
 ```python
 # store the figure objects into a dictionary  
 figure_dict = {
     'fig1':fig1,'fig2':fig2,'fig3':fig3,'fig4':fig4,'fig5':fig5,'fig6':fig6,'fig7':fig7}
-
+```
+Because we have multiple figures in our report, we want to use a for loop to programmatically iterate over the *key* and *value* pairs that are stored in our dictionary (see code cell directly above)
+```python
 # loop through the figure dictionary and write image to a png file
 for i, x in figure_dict.items():
     x.show()
