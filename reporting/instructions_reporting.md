@@ -246,13 +246,40 @@ for i, x in figure_dict.items():
     x.write_image(f'report_attrition/{i}.png')
 ```
 ## Exploratory Analysis of Company Demographics
+In order to truly understand attrition, we need to understand the landscape in which it occurs. In order to understand the firm, we need to report on categorical data that will help us paint a holistic picture of the company's demographics. At the highest level, our simple report will focus on the following areas:
+1. How profit changes by department and gender.
+2. How profit changes holistically across departments.
+3. How attrition affects profit across departments.
+4. How employee's monthly rate is distributed across department and education field.
+5. Find the average profit by department.
+6. How profit changes by employee age. 
+
+### Dataframe Transformation
+In order to find the profit, we need to preform some calculations on our dataframe. These 'adjustments' we are making to our parent dataframe could be called a) dataframe manipulation or b) data transformation. In order to accomplish these transformations we will be leveraging the functionality of Python's Pandas package. We will do a total of 5 transformations to our parent dataframe.
+
+In step 1 we are grabbing a slice of a few columns of interest in the dataframe named 'df'. Because we are selecting more than 2 column names, we pass the list through double brackets.
 
 ```python
-# Transform data frame
+# step 1
+# Select the columns of interest from our parent dataframe 'df'
 avg_profit = df[['Department','JobRole','MonthlyIncome','MonthlyRate','Attrition','Gender','EducationField','Education','Age','DailyRate']]
+```
+
+```python
+# step 2
+# Creating a Monthly Profit column
 avg_profit['MonthlyProfit'] = avg_profit.apply(lambda x: x['MonthlyRate'] - x['MonthlyIncome'],axis=1)
+
+# step 3
+# Creating a Profit Percentage column
 avg_profit['ProfitPCT'] = avg_profit.apply(lambda x: (x['MonthlyProfit'] / sum(avg_profit['MonthlyProfit']))*100, axis=1)
-avg_profit['MonthlyRatePCT'] = avg_profit.apply(lambda x: (x['MonthlyRate']/sum(avg_profit['MonthlyRate'])*100),axis=1)
+
+# step 4 
+# Creating a Monthly Rate Percentage column
+avg_profit['MonthlyRatePCT'] = avg_profit.apply(lambda x: (x['MonthlyRate'] / sum(avg_profit['MonthlyRate'])*100),axis=1)
+
+# step 5
+# Find the average profit of each department
 mean_profit_slice = avg_profit.groupby(avg_profit['Department']).mean().round(2)
 ```
 ```python
@@ -296,7 +323,7 @@ fig6 = px.scatter(
     y='Age',
     color='Department', 
     size="DailyRate", 
-    title="Distribution of Monthly Profit by Employee Age")
+    title="Distribution of Profit by Employee Age")
 ```
 ```python
 # store the figure objects into a list  
