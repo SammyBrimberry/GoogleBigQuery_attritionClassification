@@ -257,19 +257,28 @@ In order to truly understand attrition, we need to understand the landscape in w
 ### Dataframe Transformation
 In order to find the profit, we need to preform some calculations on our dataframe. These 'adjustments' we are making to our parent dataframe could be called a) dataframe manipulation or b) data transformation. In order to accomplish these transformations we will be leveraging the functionality of Python's Pandas package. We will do a total of 5 transformations to our parent dataframe.
 
-In step 1 we are grabbing a slice of a few columns of interest in the dataframe named 'df'. Because we are selecting more than 2 column names, we pass the list through double brackets.
+In step 1 we are grabbing a slice of a few columns of interest in the dataframe named 'df'. Because we are selecting more than 2 column names, we pass the list through double brackets. 
 
 ```python
 # step 1
 # Select the columns of interest from our parent dataframe 'df'
 avg_profit = df[['Department','JobRole','MonthlyIncome','MonthlyRate','Attrition','Gender','EducationField','Education','Age','DailyRate']]
 ```
+Now that we have the columns we need stored in the avg_profit dataframe, we can begin calculations. We will initialize a column named MonthlyProfit in our dataframe. The MonthlyProfit column will equal the MonthlyRate minus the MonthlyIncome columns. To do this simple computation we will leverage two methods:
+1. **Pandas [apply](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html?highlight=apply#pandas.DataFrame.apply) method:** 
+2. **lambda function:** Lambda functions can be thought of as *throw-away* functions. These are especially handy for tasks you only need to accomplish once, like a calculation! The alternative would be to define a custom function (remember there can be multiple ways to solve the same problem). The lambda function is comprised of the unbound variable x, which moves through each row and subtracts the instance of MonthlyRate and the instance of MonthlyIncome. We tell the program we are going to be moving through the columns by indicating the axis as 1. If we wanted to move through certain index positions we would use an axis of 0. For example:
+
+||Axis 1|Axis 1|
+|-|-----|-----|
+|Axis 0|
+|Axis 0|
 
 ```python
 # step 2
 # Creating a Monthly Profit column
 avg_profit['MonthlyProfit'] = avg_profit.apply(lambda x: x['MonthlyRate'] - x['MonthlyIncome'],axis=1)
-
+```
+```python
 # step 3
 # Creating a Profit Percentage column
 avg_profit['ProfitPCT'] = avg_profit.apply(lambda x: (x['MonthlyProfit'] / sum(avg_profit['MonthlyProfit']))*100, axis=1)
