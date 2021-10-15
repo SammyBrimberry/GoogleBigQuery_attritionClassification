@@ -1,4 +1,4 @@
-# Cloud Based Warehousing and Reporting Solution that Leverages Predictive Modeling to Target Employees Who are Likley to Leave the Firm
+# Cloud Based Classification Task
 This repository provides a simple tutorial on building a cloud warehousing, interactive reporting, and a predictive modeling solution for businesses concerned with managing employee attrition. 
 
 # Problem
