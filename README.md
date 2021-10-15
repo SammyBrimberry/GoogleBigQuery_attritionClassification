@@ -1,4 +1,4 @@
-# Cloud Based Classification Task
+# Cloud Based Classification and Reporting Task
 This repository provides a simple tutorial on building a cloud warehousing, interactive reporting, and a predictive modeling solution for businesses concerned with managing employee attrition. 
 
 # Problem
